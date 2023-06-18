@@ -10,4 +10,4 @@ import { LibraryService } from './services/library.service';
   providers: [LibraryService],
   controllers: [LibraryController],
 })
-export class LibraryModule{}
+export class LibraryModule {}
