@@ -9,15 +9,16 @@ import { LibraryModule } from './library/library.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'containers-us-west-108.railway.app',
-      port: 7598,
+      host: 'containers-us-west-89.railway.app',
+      port: 7053,
       username: 'root',
-      password: 'RzgDcvwotwU0QSrOF394',
+      password: 'iQKXVt8aMZQxG1D1RbNv',
       database: 'railway',
       entities: [Book],
       synchronize: true,
-      dropSchema: false
-    }), LibraryModule
+      dropSchema: false,
+    }),
+    LibraryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

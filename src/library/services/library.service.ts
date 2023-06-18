@@ -17,7 +17,7 @@ export class LibraryService {
   findOne(id: bigint): Promise<Book> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    return this.bookRepository.findOne({where: {id}});
+    return this.bookRepository.findOne({ where: { id } });
   }
 
   createBook(book: Book): Promise<Book> {
