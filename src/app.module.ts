@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { User } from './users/user.entity';
+import { OpenLibraryModule } from './openlibrary/openLibrary.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { User } from './users/user.entity';
     LibraryModule,
     AuthModule,
     UsersModule,
+    OpenLibraryModule,
   ],
   controllers: [AppController],
   providers: [
