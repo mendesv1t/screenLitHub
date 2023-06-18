@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
+import { roles } from '../auth/constants';
 
 @Injectable()
 export class UsersService {
@@ -14,11 +15,10 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  findOne(login: string, password: string): Promise<User> {
+  findOne(login: string): Promise<User> {
     return this.userRepository.findOne({
       where: {
         login: login,
-        password: password,
       },
     });
   }

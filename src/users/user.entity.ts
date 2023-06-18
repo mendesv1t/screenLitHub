@@ -1,11 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { roles } from '../auth/constants';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   login: string;
 
   @Column()
@@ -16,4 +17,7 @@ export class User {
 
   @Column()
   password: string;
+
+  @Column({ default: roles.USER })
+  role: string;
 }
