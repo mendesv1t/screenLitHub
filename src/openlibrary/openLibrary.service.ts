@@ -11,7 +11,7 @@ export class OpenLibraryService {
 
   search(query: string): Promise<AxiosResponse<SearchDTO>> {
     const baseURL = 'https://openlibrary.org/search.json?q=';
-    const parameters = '&fields=isbn,cover_i,title,author_name,key&limit=5';
+    const parameters = '&fields=isbn,cover_i,title,author_name,key&limit=10';
 
     const q = query.replace(' ', '+');
 

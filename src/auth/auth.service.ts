@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 
@@ -21,9 +21,13 @@ export class AuthService {
   async login(user: any) {
     const User = await this.usersService.findOne(user.login);
 
-    const payload = { login: User.login, id: User.id, role: User.role };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+    if (User && User.password === user.password) {
+      const payload = { login: User.login, id: User.id, role: User.role };
+      return {
+        access_token: this.jwtService.sign(payload),
+      };
+    }
+
+    throw new HttpException('Failed Login', HttpStatus.EXPECTATION_FAILED);
   }
 }
