@@ -15,10 +15,10 @@ import { OpenLibraryModule } from './openlibrary/openLibrary.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'containers-us-west-190.railway.app',
-      port: 7575,
+      host: 'containers-us-west-63.railway.app',
+      port: 6603,
       username: 'root',
-      password: 'fyY2uaopO0j4YTOivhhw',
+      password: 'o97F0j5iGa5ec1kzxAo1',
       database: 'railway',
       entities: [Book, User],
       synchronize: true,
