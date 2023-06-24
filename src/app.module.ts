@@ -10,16 +10,18 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { User } from './users/user.entity';
 import { OpenLibraryModule } from './openlibrary/openLibrary.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'containers-us-west-63.railway.app',
-      port: 6603,
-      username: 'root',
-      password: 'o97F0j5iGa5ec1kzxAo1',
-      database: 'railway',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: [Book, User],
       synchronize: true,
       dropSchema: false,
