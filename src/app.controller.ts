@@ -36,4 +36,10 @@ export class AppController {
   getProfile(@Request() req) {
     return req.user;
   }
+
+  @Public()
+  @Get()
+  status(): string {
+    return 'Esta é a API do projeto ScreenLitHub';
+  }
 }
