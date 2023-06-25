@@ -26,6 +26,12 @@ export class Book {
   @Column({ default: 0 })
   cover_i: number;
 
+  @Column({ default: 'no_image' })
+  cover_image: string;
+
+  @Column({ default: false })
+  image: boolean;
+
   get author_name() {
     return this.authors.map((a) => a.name);
   }

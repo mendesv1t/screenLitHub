@@ -11,7 +11,7 @@ export class OpenLibraryService {
 
   search(query: string): Promise<AxiosResponse<SearchDTO>> {
     const baseURL = 'https://openlibrary.org/search.json?q=';
-    const parameters = '&fields=isbn,cover_i,title,author_name,key&limit=10';
+    const parameters = '&fields=isbn,cover_i,title,author_name,key&limit=30';
 
     const q = query.replace(' ', '+');
 
@@ -25,6 +25,13 @@ export class OpenLibraryService {
     return this.httpService.axiosRef.get(baseURL + id + parameters, {
       responseType: 'arraybuffer',
     });
+  }
+
+  getCoverURL(id: number) {
+    const baseURL = 'https://covers.openlibrary.org/b/id/';
+    const parameters = '-M.jpg';
+
+    return baseURL + id + parameters;
   }
 
   getWork(key: string): Promise<AxiosResponse<WorkDTO>> {

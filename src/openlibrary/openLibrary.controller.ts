@@ -14,7 +14,7 @@ export class OpenLibraryController {
     const searchDTO = resultado.data;
 
     for (const s of searchDTO.docs) {
-      s.cover_image = await this.openLibraryService.getCoverBase64(s.cover_i);
+      s.cover_image = this.openLibraryService.getCoverURL(s.cover_i);
     }
 
     return response.status(HttpStatus.OK).json(searchDTO);
