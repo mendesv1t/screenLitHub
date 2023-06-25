@@ -7,6 +7,8 @@ import {
   HttpStatus,
   Put,
   Param,
+  Delete,
+  Query,
 } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { UsersService } from './users/users.service';
@@ -59,6 +61,16 @@ export class AppController {
     return response.status(HttpStatus.OK).json({
       book,
     });
+  }
+
+  @Delete('/collection/:id')
+  async removeCollection(@Param('id') id, @User() user) {
+    await this.usersService.removeCollection(id, user);
+  }
+
+  @Delete('/collectionKey')
+  async removeCollectionByKey(@Query('query') key, @User() user) {
+    await this.usersService.removeCollectionByKey(key, user);
   }
 
   @Public()

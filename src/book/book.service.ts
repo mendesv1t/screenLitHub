@@ -28,6 +28,12 @@ export class BookService {
     });
   }
 
+  findAllByKey(key: string): Promise<Book[]> {
+    return this.bookRepository.findBy({
+      key: key,
+    });
+  }
+
   createBook(book: Book): Promise<Book> {
     return this.bookRepository.save(book);
   }

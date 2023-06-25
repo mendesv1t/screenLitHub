@@ -44,4 +44,46 @@ export class UsersService {
 
     await this.userRepository.save(usuario);
   }
+
+  async removeCollection(id, user) {
+    const book = await this.bookService.findOne(id);
+
+    const usuario = await this.findOne(user.login);
+
+    let index = -1;
+
+    for (const [i, b] of usuario.books.entries()) {
+      if (b.id === book.id) {
+        index = i;
+      }
+    }
+
+    if (index !== -1) {
+      usuario.books.splice(index, 1);
+
+      await this.userRepository.save(usuario);
+    }
+  }
+
+  async removeCollectionByKey(key, user) {
+    const books = await this.bookService.findAllByKey(key);
+
+    const usuario = await this.findOne(user.login);
+
+    let index = -1;
+
+    for (const [i, b] of usuario.books.entries()) {
+      for (const book of books) {
+        if (b.id === book.id) {
+          index = i;
+        }
+      }
+    }
+
+    if (index !== -1) {
+      usuario.books.splice(index, 1);
+
+      await this.userRepository.save(usuario);
+    }
+  }
 }
