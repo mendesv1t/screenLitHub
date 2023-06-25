@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { roles } from '../auth/constants';
+import { Book } from '../book/book.entity';
 
 @Entity()
 export class User {
@@ -20,4 +27,10 @@ export class User {
 
   @Column({ default: roles.USER })
   role: string;
+
+  @ManyToMany(() => Book)
+  @JoinTable()
+  books: Book[];
+
+  keys: string[];
 }
