@@ -19,7 +19,7 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({default: 'teste@gmail.com'} )
   email: string;
 
   @Column()
